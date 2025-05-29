@@ -1,12 +1,18 @@
 import { relations } from "drizzle-orm";
-import { pgTable, uuid } from "drizzle-orm/pg-core";
+import { boolean, pgTable, text, timestamp } from "drizzle-orm/pg-core";
 
-import { usersClinicsTable } from "./usersClinics";
+import { usersToClinicsTable } from "./usersToClinics";
 
 export const usersTable = pgTable("users", {
-  id: uuid("id").defaultRandom().primaryKey(),
+  id: text("id").primaryKey(),
+  name: text("name").notNull(),
+  email: text("email").notNull().unique(),
+  emailVerified: boolean("email_verified").notNull(),
+  image: text("image"),
+  createdAt: timestamp("created_at").notNull(),
+  updatedAt: timestamp("updated_at").notNull(),
 });
 
 export const usersTableRelations = relations(usersTable, ({ many }) => ({
-  usersClinicsTable: many(usersClinicsTable),
+  usersToClinics: many(usersToClinicsTable),
 }));
