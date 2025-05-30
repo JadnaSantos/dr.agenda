@@ -1,5 +1,3 @@
-"use client";
-
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
@@ -11,7 +9,7 @@ import { authClient } from "@/lib/auth-client";
 import { SIGNIN_MESSAGES } from "./sign-in.messagens";
 import { SignInSchema } from "./sign-in.schema";
 
-export const SignModel = () => {
+export const useSignModel = () => {
   const router = useRouter();
   const form = useForm<z.infer<typeof SignInSchema>>({
     resolver: zodResolver(SignInSchema),
