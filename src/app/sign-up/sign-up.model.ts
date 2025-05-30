@@ -9,7 +9,7 @@ import { authClient } from "@/lib/auth-client";
 import { SING_UP_ERROR_MESSAGES } from "./sign-up.messagens";
 import { SignUpSchema } from "./sign-up.schema";
 
-export const SignUpModel = () => {
+export const useSignUpModel = () => {
   const router = useRouter();
 
   const form = useForm<z.infer<typeof SignUpSchema>>({
