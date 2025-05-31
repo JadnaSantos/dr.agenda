@@ -1,10 +1,4 @@
-import { relations } from "drizzle-orm";
 import { pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
-
-import { appointmentsTable } from "./appoinments";
-import { doctorsTable } from "./doctors";
-import { patientsTable } from "./patients";
-import { usersToClinicsTable } from "./usersToClinics";
 
 export const clinicsTable = pgTable("clinics", {
   id: uuid("id").defaultRandom().primaryKey(),
@@ -14,10 +8,3 @@ export const clinicsTable = pgTable("clinics", {
     .defaultNow()
     .$onUpdate(() => new Date()),
 });
-
-export const clinicsTableRelations = relations(clinicsTable, ({ many }) => ({
-  doctors: many(doctorsTable),
-  patients: many(patientsTable),
-  appoinments: many(appointmentsTable),
-  usersToClinics: many(usersToClinicsTable),
-}));
