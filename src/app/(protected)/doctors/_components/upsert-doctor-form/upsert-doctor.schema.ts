@@ -8,7 +8,7 @@ export const doctorSchema = z
     specialty: z.string().trim().min(1, {
       message: "Especialidade é obrigatória.",
     }),
-    appointmentPrice: z.number().min(1, {
+    appointmentPrinceInCents: z.number().min(1, {
       message: "Preço da consulta é obrigatório.",
     }),
     availableFromWeekDay: z.string(),

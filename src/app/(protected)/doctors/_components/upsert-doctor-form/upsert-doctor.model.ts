@@ -18,7 +18,7 @@ export const useUpsertDoctorModel = (props: upsertDoctorType) => {
     defaultValues: {
       name: doctor?.name ?? "",
       specialty: doctor?.specialty ?? "",
-      appointmentPrice: doctor?.appointmentPrinceInCents
+      appointmentPrinceInCents: doctor?.appointmentPrinceInCents
         ? doctor.appointmentPrinceInCents / 100
         : 0,
       availableFromWeekDay: doctor?.availableFromWeekDay?.toString() ?? "1",
@@ -44,7 +44,7 @@ export const useUpsertDoctorModel = (props: upsertDoctorType) => {
       id: doctor?.id,
       availableFromWeekDay: parseInt(values.availableFromWeekDay),
       availableToWeekDay: parseInt(values.availableToWeekDay),
-      appointmentPriceInCents: values.appointmentPrice * 100,
+      appointmentPrinceInCents: values.appointmentPrinceInCents * 100,
     });
   };
 

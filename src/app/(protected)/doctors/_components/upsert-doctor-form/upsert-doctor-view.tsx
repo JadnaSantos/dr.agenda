@@ -89,7 +89,7 @@ const UpserDoctorView = (props: upsertDoctorViewProps) => {
           />
           <FormField
             control={form.control}
-            name="appointmentPrice"
+            name="appointmentPrinceInCents"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Preço da consulta</FormLabel>
