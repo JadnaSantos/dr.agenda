@@ -1,11 +1,11 @@
 "use client";
-
 import {
   CalendarIcon,
   ClockIcon,
   DollarSignIcon,
   TrashIcon,
 } from "lucide-react";
+import { useState } from "react";
 
 import {
   AlertDialog,
@@ -29,22 +29,23 @@ import {
 } from "@/components/ui/card";
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import { Separator } from "@/components/ui/separator";
+import type { doctorsTable } from "@/db/schema";
 import { formatCurrencyInCents } from "@/helper/currecy";
 
 import { getAvailability } from "../../_helpers";
-import UpsertDoctorForm from "../upsert-doctor-form/upsert-doctor-form";
-import type { useDoctorCardModel } from "./doctor-card.model";
+import UpsertDoctorForm from "../upsert-doctor-form";
+import { useDoctorCardModel } from "./doctor-card.model";
 
-type upsertDoctorViewProps = ReturnType<typeof useDoctorCardModel>;
+interface DoctorCardViewProps {
+  doctor: typeof doctorsTable.$inferSelect;
+}
 
-const DoctorCardView = (props: upsertDoctorViewProps) => {
-  const {
-    doctor,
-    doctorInitials,
-    handleDeleteDoctorClick,
-    isUpsertDoctorDialogOpen,
-    setIsUpsertDoctorDialogOpen,
-  } = props;
+const DoctorCardView = ({ doctor }: DoctorCardViewProps) => {
+  const [isUpsertDoctorDialogOpen, setIsUpsertDoctorDialogOpen] =
+    useState(false);
+
+  const { doctorInitials, handleDeleteDoctorClick } =
+    useDoctorCardModel(doctor);
 
   const availability = getAvailability(doctor);
 

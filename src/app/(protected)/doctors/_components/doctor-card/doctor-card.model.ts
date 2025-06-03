@@ -1,20 +1,11 @@
 import { useAction } from "next-safe-action/hooks";
-import { useState } from "react";
 import { toast } from "sonner";
 
 import { deleteDoctor } from "@/core/actions/delete-doctor";
-import type { doctorsTable } from "@/db/schema";
 
-import { getAvailability } from "../../_helpers";
+import type { doctorCardType } from "./doctor-card.type";
 
-interface DoctorCardProps {
-  doctor: typeof doctorsTable.$inferSelect;
-}
-
-export const useDoctorCardModel = ({ doctor }: DoctorCardProps) => {
-  const [isUpsertDoctorDialogOpen, setIsUpsertDoctorDialogOpen] =
-    useState(false);
-
+export const useDoctorCardModel = (doctor: doctorCardType["doctor"]) => {
   const deleteDoctorAction = useAction(deleteDoctor, {
     onSuccess: () => {
       toast.success("Médico deletado com sucesso.");
@@ -37,9 +28,6 @@ export const useDoctorCardModel = ({ doctor }: DoctorCardProps) => {
   return {
     doctor,
     doctorInitials,
-    deleteDoctorAction,
     handleDeleteDoctorClick,
-    isUpsertDoctorDialogOpen,
-    setIsUpsertDoctorDialogOpen,
   };
 };
