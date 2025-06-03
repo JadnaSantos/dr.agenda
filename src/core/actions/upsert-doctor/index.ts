@@ -1,8 +1,8 @@
 "use server";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
+import { revalidatePath } from "next/cache";
 import { headers } from "next/headers";
-import { redirect } from "next/navigation";
 
 import { db } from "@/db";
 import { doctorsTable } from "@/db/schema";
@@ -48,7 +48,6 @@ export const upsertDoctor = actionClient
         clinicId: session?.user.clinic?.id,
         availableFromTime: availableFromTimeUTC.format("HH:mm:ss"),
         availableToTime: availableToTimeUTC.format("HH:mm:ss"),
-        appointmentPrinceInCents: parsedInput.appointmentPriceInCents, // Fix the typo here
       })
       .onConflictDoUpdate({
         target: [doctorsTable.id],
@@ -58,5 +57,5 @@ export const upsertDoctor = actionClient
           availableToTime: availableToTimeUTC.format("HH:mm:ss"),
         },
       });
-    redirect("/doctors");
+    revalidatePath("/doctors");
   });
