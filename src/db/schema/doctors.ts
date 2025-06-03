@@ -1,4 +1,3 @@
-import { relations } from "drizzle-orm";
 import {
   integer,
   pgTable,
@@ -29,10 +28,3 @@ export const doctorsTable = pgTable("doctors", {
     .references(() => clinicsTable.id, { onDelete: "cascade" }),
   description: text("description"),
 });
-
-export const doctorsTableRelations = relations(doctorsTable, ({ one }) => ({
-  clinic: one(clinicsTable, {
-    fields: [doctorsTable.clinicId],
-    references: [clinicsTable.id],
-  }),
-}));
