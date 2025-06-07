@@ -19,19 +19,18 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-import { usePatientTableModel } from "../patient-table/patient-table.model";
-import type { PatientTableProps } from "../patient-table/patient-table.type";
 import UpsertPatientForm from "../upsert-patients-form";
+import type { TableActionType } from "./table.action.type";
+import { useTableActionModel } from "./table-action.model";
 
-export const TableActionView = (props: PatientTableProps) => {
+export const TableActionView = (props: TableActionType) => {
   const [upsertDialogIsOpen, setUpsertDialogIsOpen] = useState(false);
 
-  const { patient, handleDeletePatientClick } = usePatientTableModel(props);
+  const { patient, handleDeletePatientClick } = useTableActionModel(props);
 
   return (
     <Dialog open={upsertDialogIsOpen} onOpenChange={setUpsertDialogIsOpen}>
@@ -42,7 +41,6 @@ export const TableActionView = (props: PatientTableProps) => {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
-          <DropdownMenuLabel>{patient.name}</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem onClick={() => setUpsertDialogIsOpen(true)}>
             <EditIcon />
