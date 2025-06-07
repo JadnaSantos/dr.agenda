@@ -29,23 +29,20 @@ import {
 } from "@/components/ui/card";
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import { Separator } from "@/components/ui/separator";
-import type { doctorsTable } from "@/db/schema";
 import { formatCurrencyInCents } from "@/helper/currecy";
 
 import { getAvailability } from "../../_helpers";
 import UpsertDoctorForm from "../upsert-doctor-form";
 import { useDoctorCardModel } from "./doctor-card.model";
+import type { doctorCardType } from "./doctor-card.type";
 
-interface DoctorCardViewProps {
-  doctor: typeof doctorsTable.$inferSelect;
-}
+const DoctorCardView = (props: doctorCardType) => {
+  const { doctor } = props;
 
-const DoctorCardView = ({ doctor }: DoctorCardViewProps) => {
   const [isUpsertDoctorDialogOpen, setIsUpsertDoctorDialogOpen] =
     useState(false);
 
-  const { doctorInitials, handleDeleteDoctorClick } =
-    useDoctorCardModel(doctor);
+  const { doctorInitials, handleDeleteDoctorClick } = useDoctorCardModel(props);
 
   const availability = getAvailability(doctor);
 
