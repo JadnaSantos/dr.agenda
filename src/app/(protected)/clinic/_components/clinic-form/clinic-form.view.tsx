@@ -1,13 +1,5 @@
-"use client";
-
-import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
-import { isRedirectError } from "next/dist/client/components/redirect-error";
-import { useForm } from "react-hook-form";
-import { toast } from "sonner";
-import type z from "zod";
 
-import { createClinic } from "@/actions/create-clinic/create-clinic";
 import { Button } from "@/components/ui/button";
 import { DialogFooter } from "@/components/ui/dialog";
 import {
@@ -20,25 +12,12 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 
-import { clinicSchema } from "../clinic-form.schema";
+import type { useClinicFormModel } from "./clinic-form.model";
 
-const ClinicForm = () => {
-  const form = useForm({
-    resolver: zodResolver(clinicSchema),
+type clinicViewProps = ReturnType<typeof useClinicFormModel>;
 
-    defaultValues: {
-      name: "",
-    },
-  });
-  const onSubmit = async (data: z.infer<typeof clinicSchema>) => {
-    try {
-      await createClinic(data.name);
-    } catch (error) {
-      if (isRedirectError(error)) return;
-
-      toast.error("Erro ao criar clínica.");
-    }
-  };
+const ClinicFormView = (props: clinicViewProps) => {
+  const { form, onSubmit } = props;
 
   return (
     <Form {...form}>
@@ -70,4 +49,4 @@ const ClinicForm = () => {
   );
 };
 
-export default ClinicForm;
+export default ClinicFormView;
