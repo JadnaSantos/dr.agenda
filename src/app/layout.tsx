@@ -16,8 +16,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Dr. Agendamento",
-  description: "clinic management application",
+  title: "Dr. Agenda",
+  description:
+    "Gerencie sua clínica de forma fácil e eficiente: cadastre médicos, pacientes e mantenha sua agenda sempre organizada.",
 };
 
 export default function RootLayout({
@@ -27,6 +28,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <link rel="icon" href="/title.svg" sizes="any" />
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
