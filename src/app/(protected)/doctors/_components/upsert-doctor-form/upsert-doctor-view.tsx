@@ -32,7 +32,7 @@ import type { useUpsertDoctorModel } from "./upsert-doctor.model";
 
 type upsertDoctorViewProps = ReturnType<typeof useUpsertDoctorModel>;
 
-const UpserDoctorView = (props: upsertDoctorViewProps) => {
+const UpsertDoctorView = (props: upsertDoctorViewProps) => {
   const { form, onSubmit, doctor, upsertDoctorAction } = props;
 
   return (
@@ -323,4 +323,4 @@ const UpserDoctorView = (props: upsertDoctorViewProps) => {
   );
 };
 
-export default UpserDoctorView;
+export default UpsertDoctorView;
