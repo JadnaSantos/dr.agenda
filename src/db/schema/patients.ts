@@ -1,7 +1,5 @@
-import { relations } from "drizzle-orm";
 import { pgEnum, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
 
-import { appointmentsTable } from "./appoinments";
 import { clinicsTable } from "./clinics";
 
 export const patientSexEnum = pgEnum("patient_sex", ["male", "female"]);
@@ -20,14 +18,3 @@ export const patientsTable = pgTable("patients", {
     .notNull()
     .references(() => clinicsTable.id, { onDelete: "cascade" }),
 });
-
-export const patientsTableRelations = relations(
-  patientsTable,
-  ({ one, many }) => ({
-    clinic: one(clinicsTable, {
-      fields: [patientsTable.clinicId],
-      references: [clinicsTable.id],
-    }),
-    appointments: many(appointmentsTable),
-  }),
-);

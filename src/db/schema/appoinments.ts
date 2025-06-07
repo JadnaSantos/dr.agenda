@@ -18,23 +18,3 @@ export const appointmentsTable = pgTable("appointments", {
     .notNull()
     .references(() => clinicsTable.id, { onDelete: "cascade" }),
 });
-
-export const appoinmentsTableRelations = relations(
-  appointmentsTable,
-  ({ one }) => ({
-    clinic: one(clinicsTable, {
-      fields: [appointmentsTable.clinicId],
-      references: [clinicsTable.id],
-    }),
-
-    doctor: one(doctorsTable, {
-      fields: [appointmentsTable.clinicId],
-      references: [doctorsTable.id],
-    }),
-
-    patient: one(patientsTable, {
-      fields: [appointmentsTable.clinicId],
-      references: [patientsTable.id],
-    }),
-  }),
-);

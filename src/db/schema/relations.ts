@@ -7,7 +7,11 @@ import { patientsTable } from "./patients";
 import { usersTable } from "./users";
 import { usersToClinicsTable } from "./usersToClinics";
 
-export const usersTableRelations = relations(
+export const usersTableRelations = relations(usersTable, ({ many }) => ({
+  usersToClinics: many(usersToClinicsTable),
+}));
+
+export const usersToClinicsTableRelations = relations(
   usersToClinicsTable,
   ({ one }) => ({
     user: one(usersTable, {
@@ -36,5 +40,36 @@ export const doctorsTableRelations = relations(
       references: [clinicsTable.id],
     }),
     appointments: many(appointmentsTable),
+  }),
+);
+
+export const patientsTableRelations = relations(
+  patientsTable,
+  ({ one, many }) => ({
+    clinic: one(clinicsTable, {
+      fields: [patientsTable.clinicId],
+      references: [clinicsTable.id],
+    }),
+    appointments: many(appointmentsTable),
+  }),
+);
+
+export const appoinmentsTableRelations = relations(
+  appointmentsTable,
+  ({ one }) => ({
+    clinic: one(clinicsTable, {
+      fields: [appointmentsTable.clinicId],
+      references: [clinicsTable.id],
+    }),
+
+    doctor: one(doctorsTable, {
+      fields: [appointmentsTable.clinicId],
+      references: [doctorsTable.id],
+    }),
+
+    patient: one(patientsTable, {
+      fields: [appointmentsTable.clinicId],
+      references: [patientsTable.id],
+    }),
   }),
 );
