@@ -2,6 +2,7 @@
 
 import { ColumnDef } from "@tanstack/react-table";
 
+import { Badge } from "@/components/ui/badge";
 import { patientsTable } from "@/db/schema";
 
 import TableAction from "../table-action";
@@ -40,7 +41,11 @@ export const TableColumns: ColumnDef<Patient>[] = [
     header: "Sexo",
     cell: (params) => {
       const patient = params.row.original;
-      return patient.sex === "male" ? "Masculino" : "Feminino";
+      return patient.sex === "male" ? (
+        <Badge variant="secondary">Masculino</Badge>
+      ) : (
+        <Badge variant="secondary">Feminino</Badge>
+      );
     },
   },
   {
