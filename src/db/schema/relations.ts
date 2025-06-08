@@ -63,12 +63,12 @@ export const appoinmentsTableRelations = relations(
     }),
 
     doctor: one(doctorsTable, {
-      fields: [appointmentsTable.clinicId],
+      fields: [appointmentsTable.doctorId],
       references: [doctorsTable.id],
     }),
 
     patient: one(patientsTable, {
-      fields: [appointmentsTable.clinicId],
+      fields: [appointmentsTable.patientId],
       references: [patientsTable.id],
     }),
   }),

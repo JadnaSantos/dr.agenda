@@ -17,4 +17,8 @@ export const appointmentsTable = pgTable("appointments", {
   clinicId: uuid("clinicId")
     .notNull()
     .references(() => clinicsTable.id, { onDelete: "cascade" }),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at")
+    .defaultNow()
+    .$onUpdate(() => new Date()),
 });
