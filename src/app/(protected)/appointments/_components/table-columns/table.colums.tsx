@@ -19,11 +19,7 @@ export const appointmentsTableColumns: ColumnDef<AppointmentWithRelations>[] = [
     header: "Médico",
     cell: (params) => {
       const appointment = params.row.original;
-      if (appointment.doctor) {
-        return appointment.doctor.name;
-      } else {
-        return "Não informado";
-      }
+      return `${appointment.doctor.name}`;
     },
   },
   {

@@ -36,7 +36,7 @@ const TableActionView = (props: AppointmentsTableActionsProps) => {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
-        <DropdownMenuLabel>{appointment.patient?.name}</DropdownMenuLabel>
+        <DropdownMenuLabel>{appointment.patient.name}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <AlertDialog>
           <AlertDialogTrigger asChild>
