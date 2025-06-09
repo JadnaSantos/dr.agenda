@@ -11,6 +11,7 @@ import { SignInSchema } from "./sign-in.schema";
 
 export const useSignModel = () => {
   const router = useRouter();
+
   const form = useForm<z.infer<typeof SignInSchema>>({
     resolver: zodResolver(SignInSchema),
     defaultValues: {
@@ -44,18 +45,9 @@ export const useSignModel = () => {
     });
   };
 
-  const handleAppleLogin = async () => {
-    await authClient.signIn.social({
-      provider: "apple",
-      callbackURL: "/dashboard",
-      scopes: ["email", "profile"],
-    });
-  };
-
   return {
     form,
     handleSubmit,
     handleGoogleLogin,
-    handleAppleLogin,
   };
 };
