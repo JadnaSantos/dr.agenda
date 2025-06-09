@@ -29,7 +29,7 @@ import {
 } from "@/components/ui/card";
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import { Separator } from "@/components/ui/separator";
-import { formatCurrencyInCents } from "@/helper/currecy";
+import { formatCurrencyInCents } from "@/helper/formatCurrencyInCents";
 
 import { getAvailability } from "../../_helpers";
 import UpsertDoctorForm from "../upsert-doctor-form";
