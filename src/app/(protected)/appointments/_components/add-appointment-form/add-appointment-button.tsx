@@ -6,7 +6,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 
-import AppointmentForm from "../appointment-form";
+import AppointmentFormComponent from "../appointment-form";
 import type { AddAppointmentButtonProps } from "./add-appointment.type";
 
 const AddAppointmentButton = (props: AddAppointmentButtonProps) => {
@@ -21,7 +21,7 @@ const AddAppointmentButton = (props: AddAppointmentButtonProps) => {
           Novo agendamento
         </Button>
       </DialogTrigger>
-      <AppointmentForm
+      <AppointmentFormComponent
         isOpen={isOpen}
         patients={patients}
         doctors={doctors}
