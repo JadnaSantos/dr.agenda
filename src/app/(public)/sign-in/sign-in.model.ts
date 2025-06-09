@@ -6,7 +6,7 @@ import type z from "zod";
 
 import { authClient } from "@/lib/auth-client";
 
-import { SIGNIN_MESSAGES } from "./sign-in.messagens";
+import { SIGN_IN_ERROR_MESSAGES, SIGNIN_MESSAGES } from "./sign-in.messagens";
 import { SignInSchema } from "./sign-in.schema";
 
 export const useSignModel = () => {
@@ -30,8 +30,12 @@ export const useSignModel = () => {
         onSuccess: () => {
           router.push("/dashboard");
         },
-        onError: () => {
-          toast.error(SIGNIN_MESSAGES.error.invalid);
+        onError: (ctx) => {
+          if (ctx.error.code === SIGNIN_MESSAGES.USER_NOT_FOUND) {
+            toast.error(SIGN_IN_ERROR_MESSAGES.USER_NOT_FOUND);
+            return;
+          }
+          toast.error(SIGN_IN_ERROR_MESSAGES.UNKNOWN_ERROR);
         },
       },
     );

@@ -6,7 +6,10 @@ import type z from "zod";
 
 import { authClient } from "@/lib/auth-client";
 
-import { SING_UP_ERROR_MESSAGES } from "./sign-up.messagens";
+import {
+  SIGN_UP_ERROR_CODES,
+  SIGN_UP_ERROR_MESSAGES,
+} from "./sign-up.messages";
 import { SignUpSchema } from "./sign-up.schema";
 
 export const useSignUpModel = () => {
@@ -33,11 +36,11 @@ export const useSignUpModel = () => {
           router.push("/dashboard");
         },
         onError: (ctx) => {
-          if (ctx.error.code === SING_UP_ERROR_MESSAGES.USER_ALREADY_EXISTS) {
-            toast.error(SING_UP_ERROR_MESSAGES.USER_ALREADY_EXISTS);
+          if (ctx.error.code === SIGN_UP_ERROR_CODES.USER_ALREADY_EXISTS) {
+            toast.error(SIGN_UP_ERROR_MESSAGES.USER_ALREADY_EXISTS);
             return;
           }
-          toast.error(SING_UP_ERROR_MESSAGES.UNKNOWN_ERROR);
+          toast.error(SIGN_UP_ERROR_MESSAGES.UNKNOWN_ERROR);
         },
       },
     );

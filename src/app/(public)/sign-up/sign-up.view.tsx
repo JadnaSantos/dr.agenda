@@ -49,9 +49,12 @@ export const SignUpView = (props: SignUpViewProps) => {
                   name="name"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Nome</FormLabel>
+                      <FormLabel>Nome completo</FormLabel>
                       <FormControl>
-                        <Input placeholder="Digite seu nome" {...field} />
+                        <Input
+                          placeholder="Digite seu nome completo"
+                          {...field}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
