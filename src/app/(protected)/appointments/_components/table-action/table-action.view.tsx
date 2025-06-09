@@ -16,8 +16,6 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
@@ -25,19 +23,16 @@ import { useTableActionModel } from "./table-action.model";
 import type { AppointmentsTableActionsProps } from "./table-action.type";
 
 const TableActionView = (props: AppointmentsTableActionsProps) => {
-  const { handleDeleteAppointmentClick, appointment } =
-    useTableActionModel(props);
+  const { handleDeleteAppointmentClick } = useTableActionModel(props);
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger>
+      <DropdownMenuTrigger asChild>
         <Button variant="ghost" size="icon">
           <MoreVerticalIcon className="h-4 w-4" />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
-        <DropdownMenuLabel>{appointment.patient.name}</DropdownMenuLabel>
-        <DropdownMenuSeparator />
         <AlertDialog>
           <AlertDialogTrigger asChild>
             <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
