@@ -122,9 +122,6 @@ export const AppSidebar = () => {
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                       <SidebarMenuButton size="lg">
-                        <Avatar>
-                          <AvatarFallback>F</AvatarFallback>
-                        </Avatar>
                         <div>
                           <p className="text-sm">
                             {session.data?.user?.clinic?.name}
