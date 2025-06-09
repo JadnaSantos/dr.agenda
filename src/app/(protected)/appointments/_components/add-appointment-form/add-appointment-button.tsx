@@ -17,7 +17,7 @@ const AddAppointmentButton = (props: AddAppointmentButtonProps) => {
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
         <Button>
-          <Plus className="mr-2 h-4 w-4" />
+          <Plus />
           Novo agendamento
         </Button>
       </DialogTrigger>
