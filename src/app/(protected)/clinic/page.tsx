@@ -6,7 +6,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 
-import ClinicForm from "./_components/clinic-form";
+import ClinicFormComponent from "./_components/clinic-form";
 
 const ClinicFormPage = () => {
   return (
@@ -18,7 +18,7 @@ const ClinicFormPage = () => {
             Adicione uma clínica para continuar.
           </DialogDescription>
         </DialogHeader>
-        <ClinicForm />
+        <ClinicFormComponent />
       </DialogContent>
     </Dialog>
   );

@@ -31,6 +31,7 @@ type upsertPatientProps = ReturnType<typeof useUpsertPatientModel>;
 
 const UpsertPatientView = (props: upsertPatientProps) => {
   const { form, patient, onSubmit, upsertPatientAction } = props;
+
   return (
     <DialogContent>
       <DialogHeader>
@@ -110,11 +111,11 @@ const UpsertPatientView = (props: upsertPatientProps) => {
                   onValueChange={field.onChange}
                   defaultValue={field.value}
                 >
-                  <FormControl>
-                    <SelectTrigger className="w-full">
+                  <SelectTrigger asChild>
+                    <span className="w-full">
                       <SelectValue placeholder="Selecione o sexo" />
-                    </SelectTrigger>
-                  </FormControl>
+                    </span>
+                  </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="male">Masculino</SelectItem>
                     <SelectItem value="female">Feminino</SelectItem>
