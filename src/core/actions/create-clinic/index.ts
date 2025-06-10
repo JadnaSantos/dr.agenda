@@ -6,15 +6,10 @@ import { redirect } from "next/navigation";
 import { db } from "@/db";
 import { clinicsTable } from "@/db/schema/clinics";
 import { usersToClinicsTable } from "@/db/schema/usersToClinics";
-import { auth } from "@/lib/auth";
+import { clientActionGuard } from "@/lib/next-safe-action";
 
-export const createClinic = async (name: string) => {
-  const session = await auth.api.getSession({
-    headers: await headers(),
-  });
-  if (!session?.user) {
-    throw new Error("Unauthorized");
-  }
+export const createClinic = clientActionGuard.action(async ({ ctx }) => {
+  const { name } = ctx;
 
   const [clinic] = await db.insert(clinicsTable).values({ name }).returning();
 
@@ -23,9 +18,9 @@ export const createClinic = async (name: string) => {
   }
 
   await db.insert(usersToClinicsTable).values({
-    userId: session.user.id,
+    userId: ctx.user.id,
     clinicId: clinic.id,
   });
 
   redirect("/dashboard");
-};
+});

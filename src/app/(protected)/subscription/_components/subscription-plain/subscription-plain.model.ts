@@ -2,7 +2,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { useRouter } from "next/navigation";
 import { useAction } from "next-safe-action/hooks";
 
-import { createStripeCheckout } from "@/core/actions/create-stripe-checkout/create-stripe-checkout";
+import { createStripeCheckout } from "@/core/actions/create-stripe-checkout";
 
 import type { SubscriptionPlainProps } from "./subscription-plain.types";
 

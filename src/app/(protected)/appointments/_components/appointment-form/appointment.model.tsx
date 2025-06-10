@@ -16,6 +16,7 @@ import type { AddAppointmentFormType } from "./appointment.type";
 
 const useAppointmentModel = (props: AddAppointmentFormType) => {
   const { isOpen, doctors, onSuccess, patients } = props;
+
   const form = useForm<z.infer<typeof appointmentSchema>>({
     shouldUnregister: true,
     resolver: zodResolver(appointmentSchema),

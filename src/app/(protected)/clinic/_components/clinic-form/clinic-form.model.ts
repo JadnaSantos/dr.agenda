@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import type z from "zod";
 
-import { createClinic } from "@/core/actions/create-clinic/create-clinic";
+import { createClinic } from "@/core/actions/create-clinic";
 
 import { clinicSchema } from "./clinic-form.schema";
 

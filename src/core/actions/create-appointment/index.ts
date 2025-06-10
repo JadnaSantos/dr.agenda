@@ -2,31 +2,17 @@
 
 import dayjs from "dayjs";
 import { revalidatePath } from "next/cache";
-import { headers } from "next/headers";
 
 import { db } from "@/db";
 import { appointmentsTable } from "@/db/schema";
-import { auth } from "@/lib/auth";
-import { actionClient } from "@/lib/next-safe-action";
+import { clinicClientActionGuard } from "@/lib/next-safe-action";
 
 import { getAvailableTimes } from "../get-available-time";
 import { createAppointmentSchema } from "./schema";
 
-export const createAppointment = actionClient
+export const createAppointment = clinicClientActionGuard
   .schema(createAppointmentSchema)
-  .action(async ({ parsedInput }) => {
-    const session = await auth.api.getSession({
-      headers: await headers(),
-    });
-
-    if (!session?.user) {
-      throw new Error("Unauthorized");
-    }
-
-    if (!session?.user.clinic?.id) {
-      throw new Error("Clinic not found");
-    }
-
+  .action(async ({ parsedInput, ctx }) => {
     const availableTimes = await getAvailableTimes({
       doctorId: parsedInput.doctorId,
       date: dayjs(parsedInput.date).format("YYYY-MM-DD"),
@@ -51,7 +37,7 @@ export const createAppointment = actionClient
 
     await db.insert(appointmentsTable).values({
       ...parsedInput,
-      clinicId: session?.user.clinic?.id,
+      clinicId: ctx.user.clinic.id,
       date: appointmentDateTime,
     });
 
