@@ -111,11 +111,11 @@ const UpsertPatientView = (props: upsertPatientProps) => {
                   onValueChange={field.onChange}
                   defaultValue={field.value}
                 >
-                  <SelectTrigger asChild>
-                    <span className="w-full">
+                  <FormControl>
+                    <SelectTrigger className="w-full">
                       <SelectValue placeholder="Selecione o sexo" />
-                    </span>
-                  </SelectTrigger>
+                    </SelectTrigger>
+                  </FormControl>
                   <SelectContent>
                     <SelectItem value="male">Masculino</SelectItem>
                     <SelectItem value="female">Feminino</SelectItem>
