@@ -1,5 +1,4 @@
 import { headers } from "next/headers";
-import { redirect } from "next/navigation";
 
 import {
   PageContainer,
@@ -9,6 +8,7 @@ import {
   PageHeaderContent,
   PageTitle,
 } from "@/components/ui/page-container";
+import WithAuthentication from "@/hocs/WithAuthentication";
 import { auth } from "@/lib/auth";
 
 import SubscriptionPlainComponent from "./_components/subscription-plain";
@@ -17,28 +17,25 @@ const SubscriptionPage = async () => {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
-  if (!session) {
-    redirect("/sign-in");
-  }
-  if (!session.user.clinic) {
-    redirect("/clinic-form");
-  }
+
   return (
-    <PageContainer>
-      <PageHeader>
-        <PageHeaderContent>
-          <PageTitle>Assinatura</PageTitle>
-          <PageDescription>Gerencie a sua assinatura.</PageDescription>
-        </PageHeaderContent>
-      </PageHeader>
-      <PageContent>
-        <SubscriptionPlainComponent
-          className="w-[350px]"
-          active={session.user.plan === "essential"}
-          userEmail={session.user.email}
-        />
-      </PageContent>
-    </PageContainer>
+    <WithAuthentication mustHaveClinic>
+      <PageContainer>
+        <PageHeader>
+          <PageHeaderContent>
+            <PageTitle>Assinatura</PageTitle>
+            <PageDescription>Gerencie a sua assinatura.</PageDescription>
+          </PageHeaderContent>
+        </PageHeader>
+        <PageContent>
+          <SubscriptionPlainComponent
+            className="w-[350px]"
+            active={session!.user.plan === "essential"}
+            userEmail={session!.user.email}
+          />
+        </PageContent>
+      </PageContainer>
+    </WithAuthentication>
   );
 };
 
