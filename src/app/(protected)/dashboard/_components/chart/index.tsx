@@ -5,12 +5,7 @@ import ChartView from "./chart.view";
 const ChartComponent = (props: ChartProps) => {
   const methods = useChartModel(props);
 
-  return (
-    <ChartView
-      {...methods}
-      dailyAppointmentsData={props.dailyAppointmentsData}
-    />
-  );
+  return <ChartView {...methods} />;
 };
 
 export default ChartComponent;

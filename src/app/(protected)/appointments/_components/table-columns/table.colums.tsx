@@ -4,7 +4,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 
-import AppointmentsTableAction from "../table-action";
+import AppointmentsTableActionComponent from "../table-action";
 import type { AppointmentWithRelations } from "../table-action/table-action.type";
 
 export const appointmentsTableColumns: ColumnDef<AppointmentWithRelations>[] = [
@@ -55,7 +55,7 @@ export const appointmentsTableColumns: ColumnDef<AppointmentWithRelations>[] = [
     id: "actions",
     cell: (params) => {
       const appointment = params.row.original;
-      return <AppointmentsTableAction appointment={appointment} />;
+      return <AppointmentsTableActionComponent appointment={appointment} />;
     },
   },
 ];

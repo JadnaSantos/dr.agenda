@@ -12,14 +12,14 @@ import {
 import { cn } from "@/lib/utils";
 
 import { useDataPickerModel } from "./data-picker.model";
-import type { DataPickerProps } from "./data-picker.types";
 
-const DataPickerView = (props: DataPickerProps) => {
-  const { className } = props;
-  const { date, handleDateSelect, formatDate } = useDataPickerModel();
+type dataPickerProps = ReturnType<typeof useDataPickerModel>;
+
+const DataPickerView = (props: dataPickerProps) => {
+  const { date, handleDateSelect, formatDate } = props;
 
   return (
-    <div className={cn("grid gap-2", className)}>
+    <div className={cn("grid gap-2")}>
       <Popover>
         <PopoverTrigger asChild>
           <Button

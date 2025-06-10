@@ -4,9 +4,10 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
 import useSubscriptionPlainModel from "./subscription-plain.model";
-import type { SubscriptionPlainProps } from "./subscription-plain.types";
 
-const SubscriptionPlainView = (props: SubscriptionPlainProps) => {
+type subscriptionPlanProps = ReturnType<typeof useSubscriptionPlainModel>;
+
+const SubscriptionPlainView = (props: subscriptionPlanProps) => {
   const {
     active,
     className,
@@ -14,7 +15,7 @@ const SubscriptionPlainView = (props: SubscriptionPlainProps) => {
     handleSubscribeClick,
     handleManagePlanClick,
     createStripeCheckoutAction,
-  } = useSubscriptionPlainModel(props);
+  } = props;
 
   return (
     <Card className={className}>

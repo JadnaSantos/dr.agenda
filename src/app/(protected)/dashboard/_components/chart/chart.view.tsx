@@ -13,10 +13,12 @@ import {
 import { formatCurrencyInCents } from "@/helper/formatCurrencyInCents";
 
 import { useChartModel } from "./chart.model";
-import type { ChartProps } from "./chart.types";
 
-const ChartView = (props: ChartProps) => {
-  const { chartConfig, chartData } = useChartModel(props);
+type chartProps = ReturnType<typeof useChartModel>;
+
+const ChartView = (props: chartProps) => {
+  const { chartConfig, chartData } = props;
+
   return (
     <Card>
       <CardHeader className="flex flex-row items-center gap-2">

@@ -1,10 +1,11 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 import { useStatsCardModel } from "./stats-card.model";
-import type { StatsCardsProps } from "./stats-cards.types";
 
-const StatsCardsView = (props: StatsCardsProps) => {
-  const { stats } = useStatsCardModel(props);
+type statsCardProps = ReturnType<typeof useStatsCardModel>;
+
+const StatsCardsView = (props: statsCardProps) => {
+  const { stats } = props;
 
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">

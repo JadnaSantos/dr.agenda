@@ -20,10 +20,11 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 import { useTableActionModel } from "./table-action.model";
-import type { AppointmentsTableActionsProps } from "./table-action.type";
 
-const TableActionView = (props: AppointmentsTableActionsProps) => {
-  const { handleDeleteAppointmentClick } = useTableActionModel(props);
+type appointmentProps = ReturnType<typeof useTableActionModel>;
+
+const TableActionView = (props: appointmentProps) => {
+  const { handleDeleteAppointmentClick } = props;
 
   return (
     <DropdownMenu>

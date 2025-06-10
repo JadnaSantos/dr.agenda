@@ -24,13 +24,14 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 import UpsertPatientForm from "../upsert-patients-form";
-import type { TableActionType } from "./table.action.type";
 import { useTableActionModel } from "./table-action.model";
 
-export const TableActionView = (props: TableActionType) => {
+type tableaActionProps = ReturnType<typeof useTableActionModel>;
+
+export const TableActionView = (props: tableaActionProps) => {
   const [upsertDialogIsOpen, setUpsertDialogIsOpen] = useState(false);
 
-  const { patient, handleDeletePatientClick } = useTableActionModel(props);
+  const { patient, handleDeletePatientClick } = props;
 
   return (
     <Dialog open={upsertDialogIsOpen} onOpenChange={setUpsertDialogIsOpen}>

@@ -32,17 +32,16 @@ import { Separator } from "@/components/ui/separator";
 import { formatCurrencyInCents } from "@/helper/formatCurrencyInCents";
 
 import { getAvailability } from "../../_helpers";
-import UpsertDoctorForm from "../upsert-doctor-form";
+import UpsertDoctorFormComponent from "../upsert-doctor-form";
 import { useDoctorCardModel } from "./doctor-card.model";
-import type { doctorCardType } from "./doctor-card.type";
 
-const DoctorCardView = (props: doctorCardType) => {
-  const { doctor } = props;
+type doctorCardProps = ReturnType<typeof useDoctorCardModel>;
 
+const DoctorCardView = (props: doctorCardProps) => {
   const [isUpsertDoctorDialogOpen, setIsUpsertDoctorDialogOpen] =
     useState(false);
 
-  const { doctorInitials, handleDeleteDoctorClick } = useDoctorCardModel(props);
+  const { doctorInitials, handleDeleteDoctorClick, doctor } = props;
 
   const availability = getAvailability(doctor);
 
@@ -83,7 +82,7 @@ const DoctorCardView = (props: doctorCardType) => {
           <DialogTrigger asChild>
             <Button className="w-full">Ver detalhes</Button>
           </DialogTrigger>
-          <UpsertDoctorForm
+          <UpsertDoctorFormComponent
             doctor={{
               ...doctor,
               availableFromTime: availability?.from.format("HH:mm:ss"),

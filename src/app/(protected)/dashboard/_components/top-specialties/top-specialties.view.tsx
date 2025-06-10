@@ -26,10 +26,11 @@ import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 
 import { useTopSpecialtiesModel } from "./top-specialties.model";
-import type { TopSpecialtiesProps } from "./top-specialties.types";
 
-const TopSpecialtiesView = (props: TopSpecialtiesProps) => {
-  const { maxAppointments, specialtyData } = useTopSpecialtiesModel(props);
+type topSpecialtiesProps = ReturnType<typeof useTopSpecialtiesModel>;
+
+const TopSpecialtiesView = (props: topSpecialtiesProps) => {
+  const { maxAppointments, specialtyData } = props;
 
   return (
     <Card className="mx-auto w-full">

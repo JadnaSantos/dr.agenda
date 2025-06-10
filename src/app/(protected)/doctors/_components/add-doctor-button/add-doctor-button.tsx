@@ -6,7 +6,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 
-import UpsertDoctorForm from "../upsert-doctor-form";
+import UpsertDoctorFormComponent from "../upsert-doctor-form";
 
 const AddDoctorButton = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,7 +18,7 @@ const AddDoctorButton = () => {
           Adicionar médico
         </Button>
       </DialogTrigger>
-      <UpsertDoctorForm onSuccess={() => setIsOpen(false)} />
+      <UpsertDoctorFormComponent onSuccess={() => setIsOpen(false)} />
     </Dialog>
   );
 };
