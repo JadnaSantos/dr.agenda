@@ -3,6 +3,7 @@ import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { customSession } from "better-auth/plugins";
 import { eq } from "drizzle-orm";
 
+import MagicNumbers from "@/constants/magic-numbers";
 import { db } from "@/db";
 import * as schema from "@/db/schema";
 
@@ -69,15 +70,23 @@ export const auth = betterAuth({
       },
     },
   },
+
   session: {
+    cookieCache: {
+      enabled: true,
+      maxAge: MagicNumbers.FIVE_MINUTES,
+    },
     modelName: "sessionsTable",
   },
+
   account: {
     modelName: "accountsTable",
   },
+
   verification: {
     modelName: "verificationsTable",
   },
+
   emailAndPassword: {
     enabled: true,
   },
