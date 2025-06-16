@@ -14,8 +14,8 @@ import {
   PageHeaderContent,
   PageTitle,
 } from "@/components/ui/page-container";
-import { getDashboard } from "@/data/getDashboard";
-import WithAuthentication from "@/hocs/WithAuthentication";
+import { getDashboard } from "@/core/actions/get-dashboard";
+import WithAuthentication from "@/hocs/withAuthentication";
 import { auth } from "@/lib/auth";
 
 import { appointmentsTableColumns } from "../appointments/_components/table-columns/table.colums";
@@ -35,6 +35,14 @@ const DashboardPage = async ({ searchParams }: DashboardPageProps) => {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
+
+  if (!session?.user) {
+    redirect("/sign-in");
+  }
+
+  if (!session.user.clinic) {
+    redirect("/clinic");
+  }
 
   const { from, to } = await searchParams;
 
@@ -59,7 +67,7 @@ const DashboardPage = async ({ searchParams }: DashboardPageProps) => {
     session: {
       user: {
         clinic: {
-          id: session!.user.clinic!.id,
+          id: session.user.clinic.id,
         },
       },
     },

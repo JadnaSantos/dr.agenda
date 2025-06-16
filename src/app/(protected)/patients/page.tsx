@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/page-container";
 import { db } from "@/db";
 import { patientsTable } from "@/db/schema";
-import WithAuthentication from "@/hocs/WithAuthentication";
+import WithAuthentication from "@/hocs/withAuthentication";
 import { auth } from "@/lib/auth";
 
 import AddPatientButton from "./_components/add-patients-button/add-patients-button";

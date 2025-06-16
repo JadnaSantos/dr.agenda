@@ -12,7 +12,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -36,6 +35,8 @@ import { authClient } from "@/lib/auth-client";
 export const AppSidebar = () => {
   const session = authClient.useSession();
 
+  console.log("session", session.data);
+
   const items = [
     {
       title: "Dashboard",
@@ -58,6 +59,7 @@ export const AppSidebar = () => {
       icon: UsersRound,
     },
   ];
+
   const router = useRouter();
   const pathname = usePathname();
 
@@ -124,7 +126,7 @@ export const AppSidebar = () => {
                       <SidebarMenuButton size="lg">
                         <div>
                           <p className="text-sm">
-                            {session.data?.user?.clinic?.name}
+                            {session.data?.user.clinic?.name}
                           </p>
                           <p className="text-muted-foreground text-sm">
                             {session.data?.user.email}

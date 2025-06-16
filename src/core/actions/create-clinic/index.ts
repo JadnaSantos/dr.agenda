@@ -6,21 +6,19 @@ import { redirect } from "next/navigation";
 import { db } from "@/db";
 import { clinicsTable } from "@/db/schema/clinics";
 import { usersToClinicsTable } from "@/db/schema/usersToClinics";
-import { clientActionGuard } from "@/lib/next-safe-action";
+import { auth } from "@/lib/auth";
 
-export const createClinic = clientActionGuard.action(async ({ ctx }) => {
-  const { name } = ctx;
-
-  const [clinic] = await db.insert(clinicsTable).values({ name }).returning();
-
-  if (!clinic) {
-    throw new Error("Failed to create clinic");
+export const createClinic = async (name: string) => {
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+  if (!session?.user) {
+    throw new Error("Unauthorized");
   }
-
+  const [clinic] = await db.insert(clinicsTable).values({ name }).returning();
   await db.insert(usersToClinicsTable).values({
-    userId: ctx.user.id,
+    userId: session.user.id,
     clinicId: clinic.id,
   });
-
   redirect("/dashboard");
-});
+};

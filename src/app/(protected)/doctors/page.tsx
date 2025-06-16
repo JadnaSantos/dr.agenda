@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/page-container";
 import { db } from "@/db";
 import { doctorsTable } from "@/db/schema";
-import WithAuthentication from "@/hocs/WithAuthentication";
+import WithAuthentication from "@/hocs/withAuthentication";
 import { auth } from "@/lib/auth";
 
 import AddDoctorButton from "./_components/add-doctor-button/add-doctor-button";

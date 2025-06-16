@@ -19,7 +19,7 @@ const WithAuthentication = async ({
   }
 
   if (mustHaveClinic && !session.user.clinic) {
-    redirect("/clinic-form");
+    redirect("/clinic");
   }
 
   return children;

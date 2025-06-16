@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/page-container";
 import { db } from "@/db";
 import { appointmentsTable, doctorsTable, patientsTable } from "@/db/schema";
-import WithAuthentication from "@/hocs/WithAuthentication";
+import WithAuthentication from "@/hocs/withAuthentication";
 import { auth } from "@/lib/auth";
 
 import AddAppointmentButton from "./_components/add-appointment-form/add-appointment-button";

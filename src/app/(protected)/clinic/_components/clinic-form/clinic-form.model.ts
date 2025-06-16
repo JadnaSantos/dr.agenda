@@ -16,6 +16,7 @@ export const useClinicFormModel = () => {
       name: "",
     },
   });
+
   const onSubmit = async (data: z.infer<typeof clinicSchema>) => {
     try {
       await createClinic(data.name);

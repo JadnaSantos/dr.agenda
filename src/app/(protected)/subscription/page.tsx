@@ -8,7 +8,7 @@ import {
   PageHeaderContent,
   PageTitle,
 } from "@/components/ui/page-container";
-import WithAuthentication from "@/hocs/WithAuthentication";
+import WithAuthentication from "@/hocs/withAuthentication";
 import { auth } from "@/lib/auth";
 
 import SubscriptionPlainComponent from "./_components/subscription-plain";

@@ -5,7 +5,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import WithAuthentication from "@/hocs/WithAuthentication";
+import WithAuthentication from "@/hocs/withAuthentication";
 
 import ClinicFormComponent from "./_components/clinic-form";
 
