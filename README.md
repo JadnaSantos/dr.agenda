@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## Doutor Agenda 🏥
 
-## Getting Started
 
-First, run the development server:
+### 📋 Sobre o Projeto
+
+Doutor agenda é um sistema para clínicas realizarem agendamento, controle de pacientes, cadastros de médicos e gerenciamento de horários.
+
+
+### 🛠️ Tecnologias
+
+- ⚛️ Next.js 15 com App Router
+- 🎨 TailwindCSS 4 + tailwind-merge + tw-animate-css
+- 🧩 Drizzle ORM + PostgreSQL
+- 🔐 Better Auth para autenticação moderna
+- 🧾 React Hook Form + Zod para validações
+- 📦 React Query (TanStack Query)
+- 💳 Stripe para pagamentos (frontend e backend)
+- 📅 React Day Picker e DayJS para controle de datas
+- 🧠 Lucide para ícones, Radix UI para componentes acessíveis
+- 🧪 Cypress para testes E2E
+
+
+### 🚀 Funcionalidades
+
+- 📆 Agendamento de consultas por data e hora
+- 👤 Cadastro e gerenciamento de pacientes
+- 👩🏾‍⚕️ Cadastro e gerenciamento de pacientes
+- 📊 Painel administrativo com estatísticas e gráficos (Recharts)
+- 💳 Pagamento via Stripe
+- ⚙️ Validações dinâmicas com Zod
+
+
+### 💳 Integração com Stripe
+
+🚫 Não realizar testes com cartão de crédito real
+
+Use o cartão teste 4242 4242 4242 4242 com qualquer data futura e CVC válido.
+
+
+### 🗂️ Arquitetura utilizada
+
+Model-View-ViewModel (MVVM) é um padrão arquitetônico projetado para separar a lógica de dados da visualização, aumentando a manutenção e a testabilidade. No MVVM, existem três componentes principais:
+
+Modelo: Gerencia o acesso a dados e a lógica de negócios, o que inclui a recuperação de dados de APIs ou bancos de dados e processá-los.
+
+Visualização: A camada responsável pela exibição de dados. No React, esses são normalmente seus componentes focados em apresentar dados passados por adereços e fornecer interface do usuário para interação do usuário.
+
+ViewModel: O núcleo do padrão MVVM, que conecta o modelo e as camadas de visualização. O ViewModel gerencia o estado e a lógica de negócios, transformando os dados do modelo em um formato pronto para a visualização.
+
+
+### 📦 Como rodar o projeto localmente
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Entre na pasta front end
+$ git clone: path do projeto
+
+# Execute o comando e o projeto sera aberto no Visual Studio Code
+$ code .
+
+# Instale as dependências
+$ npm i
+
+# Após isso você precisa gerar as tables no DB.
+
+# Inicialize o servidor em modo desenvolvimento
+$ npm run dev
+
+# O servidor irá iniciar em http://localhost:3333
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
