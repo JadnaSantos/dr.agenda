@@ -1,0 +1,57 @@
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
+import { toast } from "sonner";
+import type z from "zod";
+
+import { authClient } from "@/lib/auth-client";
+
+import { SIGN_IN_ERROR_MESSAGES } from "./sign-in.messagens";
+import { SignInSchema } from "./sign-in.schema";
+
+export const useSignModel = () => {
+  const router = useRouter();
+
+  const form = useForm<z.infer<typeof SignInSchema>>({
+    resolver: zodResolver(SignInSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
+
+  const handleSubmit = async (values: z.infer<typeof SignInSchema>) => {
+    await authClient.signIn.email(
+      {
+        email: values.email,
+        password: values.password,
+      },
+      {
+        onSuccess: () => {
+          router.push("/dashboard");
+        },
+        onError: (ctx) => {
+          if (ctx.error.code === SIGN_IN_ERROR_MESSAGES.USER_NOT_FOUND) {
+            toast.error(SIGN_IN_ERROR_MESSAGES.USER_NOT_FOUND);
+            return;
+          }
+          toast.error(SIGN_IN_ERROR_MESSAGES.UNKNOWN_ERROR);
+        },
+      },
+    );
+  };
+
+  const handleGoogleLogin = async () => {
+    await authClient.signIn.social({
+      provider: "google",
+      callbackURL: "/dashboard",
+      scopes: ["email", "profile"],
+    });
+  };
+
+  return {
+    form,
+    handleSubmit,
+    handleGoogleLogin,
+  };
+};
